@@ -49,12 +49,13 @@
           cloud security, and attack techniques.
         </p>
         <a href="https://tryhackme.com/p/nik.err404">
-          <img src="./THM/SOC LEVEL-1/Images/![alt text](image.png)" alt="Advent of Cyber 2025"/>
+          <img src="./THM/SOC%20LEVEL-1/Images/image.png" alt="Advent of Cyber 2025" />
         </a>
       </td>
     </tr>
   </table>
 </div>
+
 
 
 ---
