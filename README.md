@@ -109,6 +109,10 @@ I am constantly upgrading my tradecraft. Here is my current focus:
   <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical" alt="Random Dev Quote" />
   
   <br><br>
+  
+  [![Nitesh Kumar GitHub activity graph](https://github-readme-activity-graph.vercel.app/graph?username=NiteshKS22&bg_color=0D1117&color=5BCDEC&line=5BCDEC&point=FFFFFF&hide_border=true&area=true)](https://github.com/ashutosh00710/github-readme-activity-graph)
+
+  <br>
 
   <img src="https://github.com/NiteshKS22/blob/output/github-contribution-grid-snake.svg" alt=""/>
   
