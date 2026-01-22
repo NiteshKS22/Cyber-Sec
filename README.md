@@ -9,10 +9,10 @@
     <a href="https://www.linkedin.com/in/YOUR_LINKEDIN_PROFILE">
       <img src="https://img.shields.io/badge/LinkedIn-Connect_Me-0A66C2?style=for-the-badge&logo=linkedin" alt="LinkedIn"/>
     </a>
-    <a href="mailto:YOUR_EMAIL@gmail.com">
+    <a href="mailto:niteshkumar01malviya@gmail.com">
       <img src="https://img.shields.io/badge/Email-Contact_Me-EA4335?style=for-the-badge&logo=gmail" alt="Email"/>
     </a>
-    <a href="https://github.com/YOUR_GITHUB_USERNAME">
+    <a href="https://github.com/NiteshKS22">
       <img src="https://img.shields.io/badge/Github-My_Projects-181717?style=for-the-badge&logo=github" alt="Github"/>
     </a>
   </p>
@@ -27,9 +27,9 @@
     <tr>
       <td align="center" width="100%">
         <h3>🚨 CVE-2025-14889</h3>
-        <p><b>Discovered & Published Critical Vulnerability</b></p>
-        <p>I successfully identified and reported a vulnerability in [Software Name], resulting in an official CVE assignment.</p>
-        <a href="./research/CVE-2025-14889">
+        <p><b>Discovered & Published  Vulnerability</b></p>
+        <p>I successfully identified and reported a vulnerability in Campcodes Advanced Online Voting System 1.0, resulting in an official CVE assignment.</p>
+        <a href="./CVE/CVE-2025-14889.md">
           <img src="https://img.shields.io/badge/Read_Case_Study-CVE--2025--14889-FF0000?style=for-the-badge&logo=cve&logoColor=white" alt="Read CVE"/>
         </a>
       </td>
@@ -45,18 +45,18 @@
   <table>
     <tr>
       <td align="center">
-        <a href="https://tryhackme.com/p/YOUR_THM_USERNAME">
-          <img src="https://tryhackme-badges.s3.amazonaws.com/YOUR_THM_USERNAME.png" alt="TryHackMe" height="130"/>
+        <a href="https://tryhackme.com/p/nik.err404">
+          <img src="https://tryhackme.com/nik.err404/badges/advent-of-cyber-2025?utm_campaign=social_share&utm_medium=social&utm_content=badge&utm_source=copy&sharerId=694294561284d6394ff26aeb" alt="TryHackMe" height="130"/>
         </a>
       </td>
       <td align="center">
-        <a href="https://app.hackthebox.com/profile/YOUR_HTB_ID">
-          <img src="http://www.hackthebox.eu/badge/image/YOUR_HTB_ID" alt="HackTheBox" height="130"/>
+        <a href="https://app.hackthebox.com/users/2482238">
+          <img src="https://academy.hackthebox.com/achievement/badge/ac6a1ac2-6eac-11f0-bcfd-bea50ffe6cb4" alt="HackTheBox" height="130"/>
         </a>
       </td>
        <td align="center">
-        <a href="https://kc7cyber.com/">
-          <img src="https://img.shields.io/badge/KC7_Cyber-Active_Player-7289da?style=for-the-badge&logo=gamepad&logoColor=white" height="30" alt="KC7"/>
+        <a href="http://kc7cyber.com/profile/ErrorGoblin404">
+          <img src="http://kc7cyber.com/profile/ErrorGoblin404" height="30" alt="KC7"/>
           <br><br>
           <b>Focus:</b> SOC & Threat Intel
           <br>
@@ -86,10 +86,6 @@
 * **Tech:** Wazuh (Detection) → Python Middleware → Ollama (Enrichment) → DFIR-IRIS (Ticket).
 * **Status:** `Active Development`
 
-### 🎮 [Gamified SOC Training Lab](./projects/gamified-soc)
-* **Goal:** Building a KC7-style platform for simulating realistic log analysis scenarios.
-* **Tech:** ELK Stack, Python Log Generator.
-
 ---
 
 ## 🚀 Learning Roadmap (2026)
@@ -110,10 +106,10 @@ I am constantly upgrading my tradecraft. Here is my current focus:
   
   <br><br>
 
-  <img src="https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME/blob/output/github-contribution-grid-snake.svg" alt="snake prediction"/>
+  <img src="https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME/blob/output/github-contribution-grid-snake.svg" alt=""/>
   
   <br>
-  <img src="https://komarev.com/ghpvc/?username=YOUR_GITHUB_USERNAME&color=blueviolet" alt="Visitor Count" />
+  <img src="https://komarev.com/ghpvc/?username=NiteshKS22&color=blueviolet" alt="Visitor Count" />
   <br>
   <sub>© 2026 | Documenting the journey from novice to expert.</sub>
 </div>
