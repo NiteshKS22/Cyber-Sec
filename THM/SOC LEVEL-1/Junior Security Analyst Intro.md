@@ -94,3 +94,9 @@ As a Junior Analyst, my job isn't just to click buttons but to follow protocol.
 The attack was stopped, and the network was secured.
 
 > **Flag Obtained:** `THM{until-we-meet-again}`
+
+---
+
+### Achivement
+
+https://tryhackme.com/room/jrsecanalystintrouxo?utm_campaign=social_share&utm_medium=social&utm_content=share-completed-room&utm_source=copy&sharerId=694294561284d6394ff26aeb
