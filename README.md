@@ -64,7 +64,7 @@
 
 ## 📂 Featured Projects
 
-### ⚡ [Automated SOC Pipeline (Wazuh + AI)](./projects/soc-automation)
+### ⚡ [Automated SOC Pipeline (Wazuh + AI)](./DRIF-IRIS-WAZUH/)
 * **Goal:** Create a zero-touch alert triage system.
 * **Tech:** Wazuh (Detection) → Python Middleware → Ollama (Enrichment) → DFIR-IRIS (Ticket).
 * **Status:** `Completed`
