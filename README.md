@@ -41,11 +41,13 @@
 
 ## 🕵️‍♂️ Live Operations & Training
 
+<div align="center">
 
-  [![TryHackMe](https://img.shields.io/badge/TryHackMe-Profile-red)](https://tryhackme.com/p/nik.err404)
-  [![HackTheBox](https://img.shields.io/badge/HackTheBox-Profile-green)](https://app.hackthebox.com/users/2482238)
-  [![KC7](https://img.shields.io/badge/KC7-SOC%20%26%20Threat%20Intel-blue)](http://kc7cyber.com/profile/ErrorGoblin404)
+[![TryHackMe](https://img.shields.io/badge/TryHackMe-Profile-red)](https://tryhackme.com/p/nik.err404)  
+[![HackTheBox](https://img.shields.io/badge/HackTheBox-Profile-green)](https://app.hackthebox.com/users/2482238)  
+[![KC7](https://img.shields.io/badge/KC7-SOC%20%26%20Threat%20Intel-blue)](http://kc7cyber.com/profile/ErrorGoblin404)
 
+</div>
 
 
 ---
