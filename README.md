@@ -37,6 +37,26 @@
   </table>
 </div>
 
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" width="100%">
+        <h3>🎄 Advent of Cyber 2025</h3>
+        <p><b>Completed TryHackMe’s Annual Cybersecurity Challenge</b></p>
+        <p>
+          Successfully completed all Advent of Cyber 2025 rooms, covering
+          blue team operations, detection engineering, malware analysis,
+          cloud security, and attack techniques.
+        </p>
+        <a href="https://tryhackme.com/p/nik.err404">
+          <img src="https://img.shields.io/badge/View_Achievement-Advent_of_Cyber_2025-blue?style=for-the-badge&logo=tryhackme&logoColor=white" alt="Advent of Cyber 2025"/>
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
 ---
 
 ## 🕵️‍♂️ Live Operations & Training
