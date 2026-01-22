@@ -49,7 +49,7 @@
           cloud security, and attack techniques.
         </p>
         <a href="https://tryhackme.com/p/nik.err404">
-          <img src="https://img.shields.io/badge/View_Achievement-Advent_of_Cyber_2025-blue?style=for-the-badge&logo=tryhackme&logoColor=white" alt="Advent of Cyber 2025"/>
+          <img src="./THM/SOC LEVEL-1/Images/![alt text](image.png)" alt="Advent of Cyber 2025"/>
         </a>
       </td>
     </tr>
