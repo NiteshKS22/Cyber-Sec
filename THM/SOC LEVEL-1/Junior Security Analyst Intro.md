@@ -64,3 +64,33 @@ Right now, my goal is to master the basics as a Junior Analyst. But seeing this 
 3.  **Growth:** working with the team to write better detection rules.
 
 Eventually, I won't just be looking at alerts; I'll be understanding how the whole business breathes and operates.
+
+---
+---
+
+## Task 3: A Day in the Life of a Security Analyst
+
+![alt text](/THM/SOC%20LEVEL-1/Images/j1_Task3.png)
+
+![alt text](/THM/SOC%20LEVEL-1/Images/j1_Task3_Flag.png)
+
+---
+
+## Practical Exercise - First Day on the Job
+
+After meeting the team and understanding the theory, it was time to get my hands dirty. In this task, I simulated a real shift to handle my first security incident.
+
+### The Incident
+I monitored the security dashboard and investigated a specific alert. By analyzing the logs, I identified a suspicious connection attempting to breach our network.
+
+* **The Malicious Indicator:** `221.181.185.159`
+
+### The Response
+As a Junior Analyst, my job isn't just to click buttons but to follow protocol. 
+1.  **Escalation:** I didn't act alone. I escalated the alert to **Will Griffin**, the Senior Analyst (my mentor), to confirm my findings.
+2.  **Remediation:** Once confirmed, I took action to stop the threat. I accessed the Firewall Management console and blocked the malicious IP address.
+
+### Outcome
+The attack was stopped, and the network was secured.
+
+> **Flag Obtained:** `THM{until-we-meet-again}`
