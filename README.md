@@ -52,7 +52,7 @@
 
 ---
 
-## 🛠️ The Arsenal
+## 🛠️ DRIF-IRIS-WAZUH
 
 | **Category** | **Technologies & Tools** |
 | :--- | :--- |
@@ -67,7 +67,7 @@
 ### ⚡ [Automated SOC Pipeline (Wazuh + AI)](./projects/soc-automation)
 * **Goal:** Create a zero-touch alert triage system.
 * **Tech:** Wazuh (Detection) → Python Middleware → Ollama (Enrichment) → DFIR-IRIS (Ticket).
-* **Status:** `Active Development`
+* **Status:** `Completed`
 
 ---
 
@@ -89,7 +89,7 @@ I am constantly upgrading my tradecraft. Here is my current focus:
   
   <br><br>
 
-  <img src="https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME/blob/output/github-contribution-grid-snake.svg" alt=""/>
+  <img src="https://github.com/NiteshKS22/blob/output/github-contribution-grid-snake.svg" alt=""/>
   
   <br>
   <img src="https://komarev.com/ghpvc/?username=NiteshKS22&color=blueviolet" alt="Visitor Count" />
