@@ -83,7 +83,7 @@ This design keeps alert ingestion **fast and reliable**, while AI runs independe
 
 ---
 
-## 🖥️ Screenshots (Placeholders)
+## 🖥️ Screenshots
 
 > Replace these with real screenshots from your environment.
 
