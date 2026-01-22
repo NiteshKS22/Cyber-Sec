@@ -2,7 +2,7 @@
   <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHcweTZhYjhvNXZsanMzcDM0dWZvMzY2Z3RkeDMxYzNsYW5jZGhpcSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/kGbweSFu7IFZ373tu2/giphy.gif" width="100%" height="200" style="object-fit: cover;" alt="Cyber Security Banner"/>
 
   <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=30&duration=3000&pause=1000&color=39FF14&center=true&vCenter=true&width=435&lines=Cyber+Security+Researcher;SOC+Analyst+%7C+Blue+Team;CVE-2025-14889+Author;Automating+Defense+with+AI" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=30&duration=3000&pause=1000&color=39FF14&center=true&vCenter=true&width=435&lines=Researcher;SOC+Analyst+%7C+Blue+Team;CVE-2025-14889+Author;Automating;Red+Team;VAPT" alt="Typing SVG" />
   </a>
 
   <p>
@@ -42,29 +42,10 @@
 ## 🕵️‍♂️ Live Operations & Training
 
 <div align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <a href="https://tryhackme.com/p/nik.err404">
-          <img src="https://tryhackme.com/nik.err404/badges/advent-of-cyber-2025?utm_campaign=social_share&utm_medium=social&utm_content=badge&utm_source=copy&sharerId=694294561284d6394ff26aeb" alt="TryHackMe" height="130"/>
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://app.hackthebox.com/users/2482238">
-          <img src="https://academy.hackthebox.com/achievement/badge/ac6a1ac2-6eac-11f0-bcfd-bea50ffe6cb4" alt="HackTheBox" height="130"/>
-        </a>
-      </td>
-       <td align="center">
-        <a href="http://kc7cyber.com/profile/ErrorGoblin404">
-          <img src="http://kc7cyber.com/profile/ErrorGoblin404" height="30" alt="KC7"/>
-          <br><br>
-          <b>Focus:</b> SOC & Threat Intel
-          <br>
-          <i>Gamified Defense</i>
-        </a>
-      </td>
-    </tr>
-  </table>
+  [![TryHackMe](https://img.shields.io/badge/TryHackMe-Profile-red)](https://tryhackme.com/p/nik.err404)
+  [![HackTheBox](https://img.shields.io/badge/HackTheBox-Profile-green)](https://app.hackthebox.com/users/2482238)
+  [![KC7](https://img.shields.io/badge/KC7-SOC%20%26%20Threat%20Intel-blue)](http://kc7cyber.com/profile/ErrorGoblin404)
+
 </div>
 
 ---
