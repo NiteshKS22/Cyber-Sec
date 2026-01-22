@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://media.giphy.com/media/QscGHKqQ72jHgyVq6N/giphy.gif" width="100%" height="200" style="object-fit: cover;" alt="Cyber Security Banner"/>
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHcweTZhYjhvNXZsanMzcDM0dWZvMzY2Z3RkeDMxYzNsYW5jZGhpcSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/kGbweSFu7IFZ373tu2/giphy.gif" width="100%" height="200" style="object-fit: cover;" alt="Cyber Security Banner"/>
 
   <a href="https://git.io/typing-svg">
     <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=30&duration=3000&pause=1000&color=39FF14&center=true&vCenter=true&width=435&lines=Cyber+Security+Researcher;SOC+Analyst+%7C+Blue+Team;CVE-2025-14889+Author;Automating+Defense+with+AI" alt="Typing SVG" />
