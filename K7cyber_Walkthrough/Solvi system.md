@@ -389,3 +389,125 @@ Let's go back and look at the process events on Carla's machine to see what happ
 
 What IP address does ecobug.exe connect to in order to establish persistence?
 
+![alt text](image-20.png)
+
+---
+
+Question 4
+:   (
+50
+) points
+We can now examine the NetworkFlow data to observe the persistent connection.
+
+How many times does Carla's machine connect to the suspicious IP address
+
+![alt text](image-21.png)
+
+---
+How many distinct employee machines are involved in those connections?
+
+![alt text](image-22.png)
+
+---
+Question 9 (solved)
+:   (
+60
+) points
+We've gained some pretty good information on how the malware communicated with the threat actor's infrastructure. Let's go back to the malware to see what actions it performed on the victims' machines.
+
+A day after the malware is first executed the threat actor attempts to create a new user and add that user to the local administrators group.
+
+What is the name of the newly created user?
+
+![alt text](image-23.png)
+
+---
+
+Question 11 (solved)
+:   (
+60
+) points
+After the malware was executed on Carla's machine, a series of commands were run relating to reconnaissance on the compromised system.
+
+We can find these discovery commands.
+
+What was the last discovery command that the adversaries ran?
+
+![alt text](image-24.png)
+
+---
+
+Looks like we hit a dead end. The threat actors didn't seem interested enough to do anything else on Carla's machine.
+
+We can use this as an anchor point though. Perhaps the threat actor is a creature of habit.
+
+How many distinct commands containing the term net use were run on SolviSystem devices?
+
+![alt text](image-25.png)
+
+---
+
+Question 3 (solved)
+:   (
+70
+) points
+Let's investigate the use of net use /PERSISTENT:YES further.
+
+How many distinct hosts was this command run on?
+
+ ![alt text](image-26.png)
+
+---
+
+
+Question 8 (solved)
+:   (
+70
+) points
+Now let's go back and see if there were other commands run on Alexei's machine after net use /PERSISTENT:YES.
+
+It looks like the adversary was copying files from a network share onto Alexei's machine.
+
+What is the command used to copy files related to SoftwareDevelopment?
+
+![alt text](image-27.png)
+
+---
+
+Question 9
+:   (
+70
+) points
+After collecting the sensentive data, the adversary compressed it and moved it to another location.
+
+What is the name of the archive file containing the copied documents?
+
+![alt text](image-28.png)
+
+---
+
+Question 12
+:   (
+150
+) points
+The adversaries appeared to be highly invested in learning more about Solvi's software development process. Perhaps they want to be better understand Solvi's code bases, or figure out how to inject their own malicious code in Solvi's software.
+
+Around the same time the adversaries stole data from the network share about the software lifecycle, they were also seen accessing sensitive documents about the software lifecycle.
+
+The threat actors were observed reading an "internal process" document from an internal portal called ____.solvisystems.com
+
+![alt text](image-29.png)
+
+---
+
+The adversaries also tried going an unconventional route and simply asking nicely 🤣 for details about the SDLC using the compromised user's accounts.
+
+These compromised users sent a few emails prodding for information about the location of important software documentation.
+
+What was the subject of those emails?
+
+![alt text](image-30.png)
+
+---
+
+![alt text](image-31.png)
