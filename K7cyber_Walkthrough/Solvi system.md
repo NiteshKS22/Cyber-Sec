@@ -21,7 +21,7 @@ Employees
 Copy
 Anytime you're stuck while trying to write a query, you can always use take 10 to remind yourself what columns and values are in that table!
 
-![alt text](image.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/one.png)
 
 ---
 Section 1: KQL 101
@@ -37,7 +37,7 @@ How many employees work at Solvi Systems?
 Employees
 | count
 
-![alt text](image.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/two.png)
 
 ---
 
@@ -60,7 +60,7 @@ What is the CTO's name?
 Employees
 | where role == "CTO"
 
-![alt text](image.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/3.png)
 
 ---
 Section 1: KQL 101
@@ -76,7 +76,7 @@ Email
 | where recipient == "<Alexis Khoza's Email Address Here>"
 | count
 
-![alt text](image.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/four.png)
 
 ---
 
@@ -94,7 +94,7 @@ Email
 | distinct <field>
 | count
 
-![alt text](image-1.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/five.png)
 
 ---
 
@@ -110,7 +110,7 @@ OutboundNetworkEvents
 | <operator> <field>
 | <operator>
 
-![alt text](image.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image.png)
 
 ---
 
@@ -127,7 +127,7 @@ PassiveDns
 Copy
 You may notice we're using contains instead of has here. If you are curious about the differences between these, check out this post.
 
-![alt text](image-1.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-1.png)
 
 ---
 Question 9
@@ -141,7 +141,7 @@ PassiveDns
 | where domain == "<domain>"
 | distinct <field>
 
-![alt text](image-2.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-2.png)
 
 ---
 
@@ -159,7 +159,7 @@ OutboundNetworkEvents
 | where src_ip in (mary_ips)
 <more kql here>
 
-![alt text](image-3.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-3.png)
 
 ---
 
@@ -176,7 +176,7 @@ AuthenticationEvents
 | where username in (<list_variable_name>)
 | count
 
-![alt text](image-4.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-4.png)
 
 ---
 
@@ -210,7 +210,7 @@ InboundNetworkEvents
 Copy
 What javascript command was the attacker trying to run?
 
-![alt text](image-5.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-5.png)
 
 ---
 
@@ -230,7 +230,7 @@ InboundNetworkEvents
 Copy
 How many malicious requests did the attacker make in total?
 
-![alt text](image-6.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-6.png)
 
 ---
 Question 9 (solved)
@@ -241,7 +241,7 @@ It looks like the threat actor did some reconnaissance prior to the attack. They
 
 How many total records do we have of them browsing Solvi Systems?
 
-![alt text](image-7.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-7.png)
 
 ---
 
@@ -257,7 +257,7 @@ First we'll look in PassiveDns to see if there are any domains registered by the
 
 How many distinct domains do the ip addresses used by the threat actor resolve to?
 
-![alt text](image-8.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-8.png)
 
 ---
 
@@ -267,7 +267,7 @@ Let's check out the email logs to confirm.
 
 Did we receive any emails containing these domains? (yes/no)
 
-![alt text](image-9.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-9.png)
 
 ---
 
@@ -280,7 +280,7 @@ Let's explore these malicious emails that were sent by the adversary.
 
 How many emails associated with these domains did SolviSystem employees receive?
 
-![alt text](image-10.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-10.png)
 
 ---
 
@@ -295,7 +295,7 @@ You'll answer the following questions about the 56 emails we found earlier that 
 
 How many distinct email addresses did the threat actor use?
 
-![alt text](image-11.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-11.png)
 
 ---
 Question 3
@@ -305,7 +305,7 @@ Question 3
 How many distinct filenames were observed in the links in these emails?
 
 
-![alt text](image-12.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-12.png)
 
 ---
 
@@ -317,7 +317,7 @@ Let's look into the employee roles that this threat actor was targeting.
 
 How many different roles were targeted with these emails?
 
-![alt text](image-13.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-13.png)
 
 ---
 
@@ -327,7 +327,7 @@ Question 5 (solved)
 ) points
 How many Customer Support Specialist employees received malicious emails?
 
-![alt text](image-14.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-14.png)
 
 ---
 
@@ -337,7 +337,7 @@ Question 6
 ) points
 Among these job roles, which word is shared by three of them?
 
-![alt text](image-15.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-15.png)
 
 ---
 Question 7 (solved)
@@ -348,7 +348,7 @@ We can't investigate all of the emails at once so we'll start by looking in deta
 
 What was the timestamp of the first email the threat actor sent?
 
-![alt text](image-16.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-16.png)
 
 ---
 
@@ -358,7 +358,7 @@ Question 14
 ) points
 Did Carla click on the link in email? If so when?
 
-![alt text](image-17.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-17.png)
 ---
 
 Question 15
@@ -367,7 +367,7 @@ Question 15
 ) points
 What file was observed on Carla's machine shortly after she executed the docx file?
 
-![alt text](image-18.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-18.png)
 
 ---
 
@@ -380,7 +380,7 @@ How many records do we have of this file being created on Solvi Systems computer
 
  39
 
- ![alt text](image-19.png)
+ ![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-19.png)
 
 
 ---
@@ -389,7 +389,7 @@ Let's go back and look at the process events on Carla's machine to see what happ
 
 What IP address does ecobug.exe connect to in order to establish persistence?
 
-![alt text](image-20.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-20.png)
 
 ---
 
@@ -401,12 +401,12 @@ We can now examine the NetworkFlow data to observe the persistent connection.
 
 How many times does Carla's machine connect to the suspicious IP address
 
-![alt text](image-21.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-21.png)
 
 ---
 How many distinct employee machines are involved in those connections?
 
-![alt text](image-22.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-22.png)
 
 ---
 Question 9 (solved)
@@ -419,7 +419,7 @@ A day after the malware is first executed the threat actor attempts to create a 
 
 What is the name of the newly created user?
 
-![alt text](image-23.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-23.png)
 
 ---
 
@@ -433,7 +433,7 @@ We can find these discovery commands.
 
 What was the last discovery command that the adversaries ran?
 
-![alt text](image-24.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-24.png)
 
 ---
 
@@ -443,7 +443,7 @@ We can use this as an anchor point though. Perhaps the threat actor is a creatur
 
 How many distinct commands containing the term net use were run on SolviSystem devices?
 
-![alt text](image-25.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-25.png)
 
 ---
 
@@ -455,7 +455,7 @@ Let's investigate the use of net use /PERSISTENT:YES further.
 
 How many distinct hosts was this command run on?
 
- ![alt text](image-26.png)
+ ![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-26.png)
 
 ---
 
@@ -470,7 +470,7 @@ It looks like the adversary was copying files from a network share onto Alexei's
 
 What is the command used to copy files related to SoftwareDevelopment?
 
-![alt text](image-27.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-27.png)
 
 ---
 
@@ -482,7 +482,7 @@ After collecting the sensentive data, the adversary compressed it and moved it t
 
 What is the name of the archive file containing the copied documents?
 
-![alt text](image-28.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-28.png)
 
 ---
 
@@ -496,7 +496,7 @@ Around the same time the adversaries stole data from the network share about the
 
 The threat actors were observed reading an "internal process" document from an internal portal called ____.solvisystems.com
 
-![alt text](image-29.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-29.png)
 
 ---
 
@@ -506,8 +506,8 @@ These compromised users sent a few emails prodding for information about the loc
 
 What was the subject of those emails?
 
-![alt text](image-30.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-30.png)
 
 ---
 
-![alt text](image-31.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/image-31.png)
