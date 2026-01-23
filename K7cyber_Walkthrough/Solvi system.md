@@ -1,61 +1,82 @@
-Incident Name: Solvi Systems Multi-Stage Intrusion Attempt
-Sector: Energy / Critical Infrastructure
-Role: SOC Analyst – Detection & Investigation
+# Incident Report Solvi Systems
 
-Executive Summary
+## Incident Name
+
+**Solvi Systems Multi-Stage Intrusion Attempt**
+
+## Sector
+
+**Energy / Critical Infrastructure**
+
+## Role
+
+**SOC Analyst – Detection & Investigation**
+
+---
+
+## Executive Summary
 
 Solvi Systems experienced a multi-stage cyber intrusion attempt beginning with web-based reconnaissance and exploitation attempts, followed by a targeted phishing campaign that resulted in endpoint compromise, persistence, lateral movement, and data staging.
 
-While initial web exploitation attempts were unsuccessful, the threat actor pivoted to phishing, successfully executing malware on employee systems. The attacker demonstrated a strong interest in Solvi’s software development lifecycle (SDLC), indicating potential intellectual property theft or supply-chain compromise intent.
+While initial web exploitation attempts were unsuccessful, the threat actor pivoted to phishing, successfully executing malware on employee systems. The attacker demonstrated a strong interest in Solvi Systems’ software development lifecycle (SDLC), indicating potential intellectual property theft or supply-chain compromise intent.
 
----
 The objective of this investigation was not only to identify malicious activity, but to:
 
-Determine attacker intent
+* Determine attacker intent
+* Assess organizational impact and scope
+* Identify missed detection opportunities
+* Map observed behavior to the MITRE ATT&CK framework
+* Provide insight into defensive improvements
 
-Assess organizational impact and scope
+---
 
-Identify missed detection opportunities
-
-Map observed behavior to the MITRE ATT&CK framework
-
-Provide insight into defensive improvements
+## Threat Actor Tradecraft Observed
 
 The threat actor demonstrated:
 
-Infrastructure rotation and evasion techniques
+* Infrastructure rotation and evasion techniques
+* Use of phishing as a fallback after failed web exploitation
+* Post-compromise persistence and credential abuse
+* Targeted interest in software development lifecycle (SDLC) documentation, indicating potential supply-chain or source-code compromise intent
 
-Use of phishing as a fallback after failed web exploitation
+---
 
-Post-compromise persistence and credential abuse
+## Investigation Methodology
 
-Targeted interest in software development lifecycle (SDLC) documentation, indicating potential supply-chain or source-code compromise intent
+This report documents the investigation methodology, findings, and conclusions derived from correlating telemetry across multiple enterprise data sources, including:
 
-This report documents the investigation methodology, findings, and conclusions derived from correlating telemetry across multiple data sources, simulating real-world SOC threat hunting and incident response workflows.
+* Email telemetry
+* DNS and Passive DNS records
+* Network traffic and flow data
+* Endpoint process and file execution logs
+* Authentication and identity logs
 
-**Key Skills Demonstrated
+The investigation followed a hypothesis-driven, kill-chain–oriented approach consistent with real-world SOC threat hunting and incident response workflows.
 
-Hypothesis-driven log analysis using KQL
+---
 
-Multi-source correlation (Email, DNS, Network, Endpoint)
+## Key Skills Demonstrated
 
-Threat actor infrastructure pivoting
+* Hypothesis-driven log analysis using KQL
+* Multi-source correlation (Email, DNS, Network, Endpoint)
+* Threat actor infrastructure pivoting
+* Kill-chain reconstruction
+* Post-exploitation behavior analysis
+* Enterprise-scale incident scoping
 
-Kill-chain reconstruction
+---
 
-Post-exploitation behavior analysis
+## Framework Alignment
 
-Enterprise-scale incident scoping
+* **MITRE ATT&CK:** Initial Access → Execution → Persistence → Lateral Movement → Collection
+* **Blue Team Focus:** Detection gaps, attacker tradecraft analysis, and response implications
 
-**Framework Alignment
+---
 
-MITRE ATT&CK: Initial Access → Execution → Persistence → Lateral Movement → Collection
+## Outcome
 
-Blue Team Focus: Detection gaps, attacker tradecraft, response implications
+A complete reconstruction of attacker activity was achieved, identifying compromised users, affected hosts, persistence mechanisms, and data theft intent. Findings highlight actionable opportunities for improving detection coverage, strengthening defensive controls, and enhancing incident response readiness across the organization.
 
-**Outcome
-
-A complete reconstruction of attacker activity was achieved, identifying compromised users, affected hosts, persistence mechanisms, and data theft intent. Findings highlight actionable opportunities for improving detection coverage and incident response readiness.
 ---
 Question 2
 :   (
