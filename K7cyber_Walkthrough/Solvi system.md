@@ -134,7 +134,7 @@ What is the CTO's name?
 Employees
 | where role == "CTO"
 
-![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/3.png)
+![alt text](/K7cyber_Walkthrough/Solvi's_system_SS/three.png)
 
 ---
 Section 1: KQL 101
