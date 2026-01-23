@@ -1,8 +1,61 @@
-Background - The solvi system is a major and a future shaping energy sector in South Africa At the heart of Solvi Systems' operations is its Docks software, a critical component used by major power and utility companies.
+Incident Name: Solvi Systems Multi-Stage Intrusion Attempt
+Sector: Energy / Critical Infrastructure
+Role: SOC Analyst – Detection & Investigation
 
-Solvi Systems' influence extends beyond national borders. The company plays a crucial role in regional stability, as South Africa exports power to neighboring states like Mozambique, Eswatini, Zimbabwe, and Namibia. This interconnectedness means that any vulnerability or disruption in South Africa's energy infrastructure, and by extension Solvi Systems' software, doesn't just affect one nation but echoes across the region.
+Executive Summary
 
-Given this key role, Solvi Systems is a prime target for cyber adversaries. You've been hired to identify any intrusions against this company.
+Solvi Systems experienced a multi-stage cyber intrusion attempt beginning with web-based reconnaissance and exploitation attempts, followed by a targeted phishing campaign that resulted in endpoint compromise, persistence, lateral movement, and data staging.
+
+While initial web exploitation attempts were unsuccessful, the threat actor pivoted to phishing, successfully executing malware on employee systems. The attacker demonstrated a strong interest in Solvi’s software development lifecycle (SDLC), indicating potential intellectual property theft or supply-chain compromise intent.
+
+---
+The objective of this investigation was not only to identify malicious activity, but to:
+
+Determine attacker intent
+
+Assess organizational impact and scope
+
+Identify missed detection opportunities
+
+Map observed behavior to the MITRE ATT&CK framework
+
+Provide insight into defensive improvements
+
+The threat actor demonstrated:
+
+Infrastructure rotation and evasion techniques
+
+Use of phishing as a fallback after failed web exploitation
+
+Post-compromise persistence and credential abuse
+
+Targeted interest in software development lifecycle (SDLC) documentation, indicating potential supply-chain or source-code compromise intent
+
+This report documents the investigation methodology, findings, and conclusions derived from correlating telemetry across multiple data sources, simulating real-world SOC threat hunting and incident response workflows.
+
+**Key Skills Demonstrated
+
+Hypothesis-driven log analysis using KQL
+
+Multi-source correlation (Email, DNS, Network, Endpoint)
+
+Threat actor infrastructure pivoting
+
+Kill-chain reconstruction
+
+Post-exploitation behavior analysis
+
+Enterprise-scale incident scoping
+
+**Framework Alignment
+
+MITRE ATT&CK: Initial Access → Execution → Persistence → Lateral Movement → Collection
+
+Blue Team Focus: Detection gaps, attacker tradecraft, response implications
+
+**Outcome
+
+A complete reconstruction of attacker activity was achieved, identifying compromised users, affected hosts, persistence mechanisms, and data theft intent. Findings highlight actionable opportunities for improving detection coverage and incident response readiness.
 ---
 Question 2
 :   (
