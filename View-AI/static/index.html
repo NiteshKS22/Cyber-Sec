@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>View — SOC Command Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#060a14;--bg2:#0b1122;--bg3:#111a30;--bg4:#192040;
+  --glass:rgba(255,255,255,.035);--glass2:rgba(255,255,255,.06);--glass3:rgba(255,255,255,.09);
+  --bdr:rgba(255,255,255,.07);--bdr2:rgba(255,255,255,.12);
+  --txt:#e2e8f0;--txt2:#94a3b8;--txt3:#64748b;
+  --accent:#7c3aed;--accent2:#a78bfa;--accent-g:rgba(124,58,237,.2);
+  --cyan:#06b6d4;--cyan-g:rgba(6,182,212,.15);
+  --grn:#10b981;--grn-g:rgba(16,185,129,.15);
+  --amber:#f59e0b;--red:#ef4444;--red-g:rgba(239,68,68,.12);
+  --r:12px;--r2:16px;
+}
+html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);overflow:hidden}
+
+/* Layout */
+.shell{display:flex;height:100vh}
+.rail{width:64px;background:var(--bg2);border-right:1px solid var(--bdr);display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:6px;z-index:10}
+.rail .brand{width:38px;height:38px;background:linear-gradient(135deg,var(--accent),var(--cyan));border-radius:10px;display:grid;place-items:center;font-size:18px;font-weight:800;margin-bottom:16px;color:#fff;cursor:pointer}
+.tab{width:42px;height:42px;display:grid;place-items:center;border-radius:10px;cursor:pointer;font-size:18px;color:var(--txt3);transition:.2s;position:relative}
+.tab:hover{background:var(--glass2);color:var(--txt)}
+.tab.on{background:var(--accent-g);color:var(--accent2)}
+.tab.on::after{content:'';position:absolute;left:-8px;width:3px;height:20px;background:var(--accent);border-radius:0 3px 3px 0}
+.tab .tip{position:absolute;left:54px;background:var(--bg3);padding:5px 10px;border-radius:6px;font-size:11px;white-space:nowrap;opacity:0;pointer-events:none;transition:.15s;border:1px solid var(--bdr)}
+.tab:hover .tip{opacity:1}
+.spacer{flex:1}
+
+.body{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.topbar{height:50px;background:var(--bg2);border-bottom:1px solid var(--bdr);display:flex;align-items:center;padding:0 20px;gap:14px;flex-shrink:0}
+.topbar h1{font-size:14px;font-weight:700;background:linear-gradient(90deg,var(--accent2),var(--cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.topbar .sp{flex:1}
+.pill{display:flex;align-items:center;gap:5px;padding:3px 10px;border-radius:16px;font-size:10px;font-weight:600;background:var(--glass)}
+.dot{width:7px;height:7px;border-radius:50%}.dot.ok{background:var(--grn);box-shadow:0 0 6px var(--grn-g)}.dot.no{background:var(--red);box-shadow:0 0 6px var(--red-g)}.dot.ld{background:var(--amber);animation:pls 1.4s infinite}
+@keyframes pls{0%,100%{opacity:1}50%{opacity:.3}}
+.clk{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt3)}
+
+.pane{flex:1;overflow-y:auto;padding:20px 24px;scroll-behavior:smooth}
+.pane::-webkit-scrollbar{width:5px}.pane::-webkit-scrollbar-thumb{background:var(--glass3);border-radius:3px}
+
+.view{display:none;animation:fi .25s}.view.on{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* Cards */
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:20px}
+.cd{background:var(--glass);border:1px solid var(--bdr);border-radius:var(--r2);padding:18px;backdrop-filter:blur(10px);transition:.2s}
+.cd:hover{border-color:var(--bdr2);transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.3)}
+.cd-l{font-size:11px;color:var(--txt3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
+.cd-v{font-size:26px;font-weight:700}.cd-s{font-size:11px;color:var(--txt2);margin-top:3px}.cd-i{font-size:24px;float:right;opacity:.5}
+
+/* Connection */
+.cx{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.cx-c{background:var(--glass);border:1px solid var(--bdr);border-radius:var(--r2);padding:18px;display:flex;align-items:center;gap:14px}
+.cx-ico{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;font-size:20px}
+.cx-ico.w{background:linear-gradient(135deg,var(--accent),var(--accent2))}.cx-ico.o{background:linear-gradient(135deg,var(--cyan),#0891b2)}
+.cx-i h4{font-size:12px;font-weight:600;margin-bottom:1px}.cx-i p{font-size:11px;color:var(--txt3)}
+.cx-s{margin-left:auto;font-size:10px;font-weight:700;padding:3px 9px;border-radius:16px}
+.cx-s.ok{color:var(--grn);background:var(--grn-g)}.cx-s.no{color:var(--red);background:var(--red-g)}
+
+/* Table */
+.tw{background:var(--glass);border:1px solid var(--bdr);border-radius:var(--r2);overflow:hidden}
+.th{display:flex;align-items:center;padding:14px 18px;border-bottom:1px solid var(--bdr);gap:10px}
+.th h3{font-size:13px;font-weight:600;flex:1}
+.sb{background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:7px 12px;font-size:11px;color:var(--txt);width:220px;outline:none;font-family:inherit}.sb:focus{border-color:var(--accent)}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:9px 18px;font-size:10px;font-weight:600;color:var(--txt3);text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--bdr)}
+td{padding:10px 18px;font-size:12px;border-bottom:1px solid var(--bdr)}
+tr:hover td{background:var(--glass)}
+.bg{padding:2px 9px;border-radius:16px;font-size:10px;font-weight:700}
+.bg-a{background:var(--grn-g);color:var(--grn)}.bg-d{background:var(--red-g);color:var(--red)}.bg-p{background:rgba(245,158,11,.12);color:var(--amber)}
+
+/* Tools */
+.tg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.tc{background:var(--glass);border:1px solid var(--bdr);border-radius:var(--r2);padding:18px;cursor:pointer;transition:.2s}
+.tc:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 0 18px var(--accent-g)}
+.tc .i{font-size:24px;margin-bottom:8px}.tc h4{font-size:13px;font-weight:600;margin-bottom:3px}.tc p{font-size:11px;color:var(--txt2);line-height:1.5}
+.tcat{display:inline-block;padding:2px 7px;border-radius:4px;font-size:9px;font-weight:700;text-transform:uppercase;margin-top:6px;background:var(--glass2);color:var(--txt3)}
+
+/* Chat */
+.chat-box{display:flex;flex-direction:column;height:calc(100vh - 96px)}
+.msgs{flex:1;overflow-y:auto;padding:6px 0;display:flex;flex-direction:column;gap:10px}
+.msgs::-webkit-scrollbar{width:4px}.msgs::-webkit-scrollbar-thumb{background:var(--glass3);border-radius:2px}
+.m{max-width:82%;padding:12px 16px;border-radius:var(--r2);font-size:12px;line-height:1.7;animation:fi .2s}
+.m.u{align-self:flex-end;background:linear-gradient(135deg,var(--accent),#6d28d9);color:#fff;border-bottom-right-radius:4px}
+.m.b{align-self:flex-start;background:var(--glass2);border:1px solid var(--bdr);border-bottom-left-radius:4px}
+.m.b pre{background:var(--bg);padding:8px;border-radius:6px;margin-top:6px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:11px}
+.m.b code{font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--bg);padding:1px 4px;border-radius:3px}
+.m-t{font-size:9px;color:var(--txt3);margin-top:4px}
+.ci{display:flex;gap:8px;padding:14px 0 0;flex-shrink:0}
+.cin{flex:1;background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--r);padding:12px 16px;font-size:12px;color:var(--txt);outline:none;font-family:inherit;resize:none;min-height:46px;max-height:110px}
+.cin:focus{border-color:var(--accent)}.cin::placeholder{color:var(--txt3)}
+.csnd{width:46px;height:46px;background:linear-gradient(135deg,var(--accent),#6d28d9);border:none;border-radius:var(--r);color:#fff;font-size:16px;cursor:pointer;transition:.2s;display:grid;place-items:center}
+.csnd:hover{transform:scale(1.06);box-shadow:0 0 16px var(--accent-g)}.csnd:disabled{opacity:.35;cursor:not-allowed;transform:none}
+.typing{display:flex;gap:3px;padding:12px 16px;align-self:flex-start;background:var(--glass2);border:1px solid var(--bdr);border-radius:var(--r2);border-bottom-left-radius:4px}
+.typing s{width:6px;height:6px;background:var(--txt3);border-radius:50%;text-decoration:none;animation:bn .5s infinite alternate}.typing s:nth-child(2){animation-delay:.15s}.typing s:nth-child(3){animation-delay:.3s}
+@keyframes bn{to{transform:translateY(-5px);opacity:.25}}
+
+.sh{margin-bottom:14px}.sh h2{font-size:16px;font-weight:700;margin-bottom:3px}.sh p{font-size:12px;color:var(--txt2)}
+
+/* Tool Result Modal */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:100;place-items:center}
+.modal-bg.on{display:grid}
+.modal{background:var(--bg2);border:1px solid var(--bdr2);border-radius:var(--r2);width:min(720px,90vw);max-height:80vh;display:flex;flex-direction:column;animation:fi .2s}
+.modal-head{display:flex;align-items:center;padding:16px 20px;border-bottom:1px solid var(--bdr);gap:10px}
+.modal-head h3{flex:1;font-size:14px;font-weight:600}.modal-head .mtag{font-size:10px;padding:2px 8px;border-radius:4px;background:var(--accent-g);color:var(--accent2);font-weight:700}
+.modal-close{width:30px;height:30px;display:grid;place-items:center;border-radius:8px;border:none;background:var(--glass);color:var(--txt);cursor:pointer;font-size:14px}
+.modal-close:hover{background:var(--red-g);color:var(--red)}
+.modal-body{flex:1;overflow-y:auto;padding:16px 20px}
+.modal-body pre{background:var(--bg);padding:14px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.6;overflow-x:auto;white-space:pre-wrap;word-break:break-all;color:var(--txt2)}
+.modal-body .loading-msg{text-align:center;padding:40px;color:var(--txt3);font-size:13px}
+.modal-body .err-msg{color:var(--red);padding:20px;font-size:13px}
+/* Param input */
+.param-form{display:flex;gap:8px;margin-bottom:14px}
+.param-form input{flex:1;background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--txt);outline:none;font-family:inherit}
+.param-form input:focus{border-color:var(--accent)}
+.param-form button{padding:10px 18px;background:linear-gradient(135deg,var(--accent),#6d28d9);border:none;border-radius:8px;color:#fff;font-size:12px;font-weight:600;cursor:pointer}
+
+@media(max-width:768px){.cg{grid-template-columns:1fr 1fr}.cx{grid-template-columns:1fr}.tg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav class="rail">
+    <div class="brand" title="View"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 4C4 4 1 12 1 12s3 8 11 8 11-8 11-8-3-8-11-8z" stroke="#fff" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="3.5" stroke="#fff" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="1" fill="#fff"/></svg></div>
+    <div class="tab on" data-v="overview" onclick="go('overview')">📊<span class="tip">Overview</span></div>
+    <div class="tab" data-v="agents" onclick="go('agents')">🖥️<span class="tip">Agents</span></div>
+    <div class="tab" data-v="chat" onclick="go('chat')">🤖<span class="tip">View AI</span></div>
+    <div class="tab" data-v="tools" onclick="go('tools')">🧰<span class="tip">MCP Tools</span></div>
+    <div class="spacer"></div>
+    <div class="tab" onclick="boot()" title="Refresh">🔄<span class="tip">Refresh</span></div>
+  </nav>
+  <div class="body">
+    <header class="topbar">
+      <h1>👁️ View</h1><div class="sp"></div>
+      <div class="pill"><span class="dot ld" id="wd"></span><span id="wl">Wazuh</span></div>
+      <div class="pill"><span class="dot ld" id="od"></span><span id="ol">AI</span></div>
+      <span class="clk" id="clk"></span>
+    </header>
+    <div class="pane">
+      <!-- Overview -->
+      <div class="view on" id="v-overview">
+        <div class="sh"><h2>Dashboard</h2><p>Real-time security overview</p></div>
+        <div class="cx">
+          <div class="cx-c"><div class="cx-ico w">🛡️</div><div class="cx-i"><h4>Wazuh Manager</h4><p id="wu">—</p></div><span class="cx-s" id="wc">…</span></div>
+          <div class="cx-c"><div class="cx-ico o">🤖</div><div class="cx-i"><h4>View AI</h4><p id="ou">—</p></div><span class="cx-s" id="oc">…</span></div>
+        </div>
+        <div class="cg">
+          <div class="cd"><div class="cd-i">🖥️</div><div class="cd-l">Total Agents</div><div class="cd-v" id="s-total">—</div><div class="cd-s">Registered endpoints</div></div>
+          <div class="cd"><div class="cd-i">✅</div><div class="cd-l">Active</div><div class="cd-v" id="s-active" style="color:var(--grn)">—</div><div class="cd-s">Online & reporting</div></div>
+          <div class="cd"><div class="cd-i">⚠️</div><div class="cd-l">Disconnected</div><div class="cd-v" id="s-disc" style="color:var(--red)">—</div><div class="cd-s">Need attention</div></div>
+          <div class="cd"><div class="cd-i">🧰</div><div class="cd-l">MCP Tools</div><div class="cd-v" id="s-tools">14</div><div class="cd-s">AI integrations</div></div>
+        </div>
+        <div class="tw"><div class="th"><h3>Recent Agents</h3></div>
+        <table><thead><tr><th>ID</th><th>Name</th><th>IP</th><th>OS</th><th>Status</th><th>Last Seen</th></tr></thead>
+        <tbody id="ov-tb"><tr><td colspan="6" style="text-align:center;color:var(--txt3);padding:24px">Loading…</td></tr></tbody></table></div>
+      </div>
+      <!-- Agents -->
+      <div class="view" id="v-agents">
+        <div class="sh"><h2>Agent Management</h2><p>Monitor and manage endpoints</p></div>
+        <div class="tw"><div class="th"><h3>All Agents</h3><input class="sb" placeholder="Search agents…" oninput="filt(this.value)"></div>
+        <table><thead><tr><th>ID</th><th>Name</th><th>IP</th><th>OS</th><th>Version</th><th>Status</th><th>Last Alive</th></tr></thead>
+        <tbody id="ag-tb"><tr><td colspan="7" style="text-align:center;color:var(--txt3);padding:24px">Loading…</td></tr></tbody></table></div>
+      </div>
+      <!-- Chat -->
+      <div class="view" id="v-chat">
+        <div class="chat-box">
+          <div class="sh" style="flex-shrink:0"><h2>👁️ View AI</h2><p>Powered by Phi4-mini — Your Lead Security Analyst</p></div>
+          <div class="msgs" id="msgs">
+            <div class="m b">I'm <strong>View AI</strong>, your Lead SOC Analyst. I can help you investigate threats, analyze vulnerabilities, and monitor your Wazuh deployment. Try:<br><br>• <em>"Analyze recent brute force activity"</em><br>• <em>"What CVEs should I prioritize?"</em><br>• <em>"How to harden a Linux agent?"</em></div>
+          </div>
+          <div class="ci">
+            <textarea class="cin" id="cin" placeholder="Ask View AI…" rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();send()}"></textarea>
+            <button class="csnd" onclick="send()" id="csnd">➤</button>
+          </div>
+        </div>
+      </div>
+      <!-- Tools -->
+      <div class="view" id="v-tools">
+        <div class="sh"><h2>MCP Tool Explorer</h2><p>14 tools for AI-powered Wazuh integration</p></div>
+        <div class="tg" id="tg">Loading…</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tool Result Modal -->
+<div class="modal-bg" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modal-title">Tool Result</h3>
+      <span class="mtag" id="modal-tag"></span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body">
+      <div class="loading-msg">Running tool…</div>
+    </div>
+  </div>
+</div>
+<script>
+let A=[],H=[];
+const $=id=>document.getElementById(id);
+
+function tick(){$('clk').textContent=new Date().toLocaleTimeString('en-GB')}
+setInterval(tick,1000);tick();
+
+function go(v){
+  document.querySelectorAll('.view').forEach(e=>e.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(e=>e.classList.remove('on'));
+  $('v-'+v).classList.add('on');
+  document.querySelector('[data-v="'+v+'"]').classList.add('on');
+}
+
+async function health(){
+  try{
+    const d=await(await fetch('/api/health')).json();
+    $('wd').className='dot '+(d.wazuh?'ok':'no');
+    $('od').className='dot '+(d.ollama?'ok':'no');
+    $('wl').textContent=d.wazuh?'Wazuh ✓':'Wazuh ✗';
+    $('ol').textContent=d.ollama?'AI ✓':'AI ✗';
+    $('wu').textContent=d.wazuh_url||'—';
+    $('ou').textContent=d.ollama_model+' @ '+d.ollama_url;
+    $('wc').textContent=d.wazuh?'Connected':'Offline';$('wc').className='cx-s '+(d.wazuh?'ok':'no');
+    $('oc').textContent=d.ollama?'Connected':'Offline';$('oc').className='cx-s '+(d.ollama?'ok':'no');
+  }catch(e){console.error(e)}
+}
+
+async function agents(){
+  try{
+    const d=await(await fetch('/api/agents')).json();
+    A=d.data?.affected_items||[];
+    const act=A.filter(a=>a.status==='active').length;
+    $('s-total').textContent=A.length;$('s-active').textContent=act;$('s-disc').textContent=A.length-act;
+    const row=a=>`<tr>
+      <td style="font-family:'JetBrains Mono',monospace;font-size:11px">${a.id||'—'}</td>
+      <td><strong>${a.name||'—'}</strong></td>
+      <td style="font-family:'JetBrains Mono',monospace;font-size:11px">${a.ip||'—'}</td>
+      <td>${a.os?.name||'—'} ${a.os?.version||''}</td>`;
+    $('ov-tb').innerHTML=A.slice(0,8).map(a=>row(a)+`<td><span class="bg bg-${a.status==='active'?'a':'d'}">${a.status||'—'}</span></td>
+      <td style="font-size:11px;color:var(--txt2)">${a.lastKeepAlive?new Date(a.lastKeepAlive).toLocaleString():'—'}</td></tr>`).join('')||'<tr><td colspan="6" style="text-align:center;color:var(--txt3);padding:24px">No agents found</td></tr>';
+    render(A);
+  }catch(e){console.error(e)}
+}
+
+function render(list){
+  $('ag-tb').innerHTML=list.map(a=>`<tr>
+    <td style="font-family:'JetBrains Mono',monospace;font-size:11px">${a.id||'—'}</td>
+    <td><strong>${a.name||'—'}</strong></td>
+    <td style="font-family:'JetBrains Mono',monospace;font-size:11px">${a.ip||'—'}</td>
+    <td>${a.os?.name||'—'} ${a.os?.version||''}</td>
+    <td style="font-size:11px">${a.version||'—'}</td>
+    <td><span class="bg bg-${a.status==='active'?'a':a.status==='disconnected'?'d':'p'}">${a.status||'—'}</span></td>
+    <td style="font-size:11px;color:var(--txt2)">${a.lastKeepAlive?new Date(a.lastKeepAlive).toLocaleString():'—'}</td></tr>`).join('')||'<tr><td colspan="7" style="text-align:center;color:var(--txt3);padding:24px">No agents</td></tr>';
+}
+
+function filt(q){if(!q)return render(A);const l=q.toLowerCase();render(A.filter(a=>(a.name||'').toLowerCase().includes(l)||(a.ip||'').includes(l)||(a.id||'').includes(l)));}
+
+async function tools(){
+  try{
+    const d=await(await fetch('/api/tools')).json();
+    $('s-tools').textContent=d.count;
+    $('tg').innerHTML=d.tools.map(t=>{
+      const needs=['get_agent','agent_vulnerabilities','agent_ports','agent_processes','agent_packages','agent_sca','sca_policy_checks'];
+      const needsAgent=needs.includes(t.name);
+      return `<div class="tc" onclick="runTool('${t.name}','${t.desc}','${t.cat}',${needsAgent})">
+        <div class="i">${t.icon}</div><h4>${t.name}</h4><p>${t.desc}</p><span class="tcat">${t.cat}</span>
+      </div>`;
+    }).join('');
+  }catch(e){console.error(e)}
+}
+
+async function send(){
+  const inp=$('cin'),txt=inp.value.trim();if(!txt)return;inp.value='';
+  $('csnd').disabled=true;H.push({role:'user',content:txt});bub('u',txt);
+  const ms=$('msgs'),ty=document.createElement('div');ty.className='typing';ty.id='ty';
+  ty.innerHTML='<s></s><s></s><s></s>';ms.appendChild(ty);ms.scrollTop=ms.scrollHeight;
+  try{
+    const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:H})});
+    const d=await r.json();ty.remove();
+    if(d.error){bub('b','⚠️ '+d.error)}
+    else{const t=d.message?.content||'No response';H.push({role:'assistant',content:t});bub('b',t)}
+  }catch(e){ty.remove();bub('b','⚠️ '+e.message)}
+  $('csnd').disabled=false;
+}
+
+function bub(r,t){
+  const ms=$('msgs'),d=document.createElement('div');d.className='m '+r;
+  let h=t.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  h=h.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+  h=h.replace(/`([^`]+)`/g,'<code>$1</code>');
+  h=h.replace(/```([\s\S]*?)```/g,'<pre>$1</pre>');
+  h=h.replace(/\n/g,'<br>');
+  d.innerHTML=h+'<div class="m-t">'+new Date().toLocaleTimeString()+'</div>';
+  ms.appendChild(d);ms.scrollTop=ms.scrollHeight;
+}
+
+function boot(){health();agents();tools()}
+boot();setInterval(health,30000);setInterval(agents,60000);
+
+// Tool runner
+function closeModal(){$('modal').classList.remove('on')}
+
+async function runTool(name,desc,cat,needsAgent){
+  $('modal-title').textContent=name;
+  $('modal-tag').textContent=cat;
+  $('modal').classList.add('on');
+  if(needsAgent){
+    const needsPolicy=name==='sca_policy_checks';
+    $('modal-body').innerHTML=`<div class="param-form">
+      <input id="param-agent" placeholder="Enter Agent ID (e.g. 001)" autofocus>
+      ${needsPolicy?'<input id="param-policy" placeholder="Policy ID">':''}
+      <button onclick="execTool('${name}')">Run</button>
+    </div><pre id="tool-result" style="display:none"></pre>`;
+    return;
+  }
+  $('modal-body').innerHTML='<div class="loading-msg">⏳ Running '+name+'…</div>';
+  await execToolDirect(name,{});
+}
+
+async function execTool(name){
+  const aid=$('param-agent')?.value?.trim();
+  if(!aid){$('param-agent').style.borderColor='var(--red)';return;}
+  const params={agent_id:aid};
+  const pid=$('param-policy');
+  if(pid)params.policy_id=pid.value.trim();
+  const pre=$('tool-result');
+  if(pre){pre.style.display='block';pre.textContent='⏳ Running…';}
+  else{$('modal-body').innerHTML+='<pre id="tool-result">⏳ Running…</pre>';}
+  await execToolDirect(name,params);
+}
+
+async function execToolDirect(name,params){
+  try{
+    const r=await fetch('/api/run-tool',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tool:name,params})});
+    const d=await r.json();
+    const pre=$('tool-result')||document.createElement('pre');
+    pre.id='tool-result';
+    if(d.error){
+      $('modal-body').innerHTML='<div class="err-msg">⚠️ '+d.error+'</div>';
+    } else {
+      const json=JSON.stringify(d.result,null,2);
+      $('modal-body').innerHTML='<pre id="tool-result"></pre>';
+      $('tool-result').textContent=json;
+    }
+  }catch(e){
+    $('modal-body').innerHTML='<div class="err-msg">⚠️ '+e.message+'</div>';
+  }
+}
+</script>
+</body>
+</html>
