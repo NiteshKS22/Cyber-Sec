@@ -89,6 +89,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## ✍️ Credits
 Original implementation by **Nitesh**.
-Built with ❤️ for the cybersecurity community.
 =======
 
