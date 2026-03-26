@@ -12,7 +12,7 @@ A high-performance, completely original, AI-driven SOC dashboard and MCP (Model 
 *   **🔌 14 Multi-Context Tools**: Fully interactive MCP tools that can be executed directly from the UI or by any MCP-compliant AI client.
 *   **📊 Smart Pattern Recognition**: Automatically aggregates log sources, groups errors/warnings, and detects repeated suspicious IPs.
 *   **⚡ Async Performance**: Built with `FastMCP`, `Starlette`, and `httpx` for maximum responsiveness and non-blocking security operations.
-*   **🔒 Zero-Copyright Code**: 100% custom-built, lightweight implementation with no legacy dependencies.
+
 
 ---
 
