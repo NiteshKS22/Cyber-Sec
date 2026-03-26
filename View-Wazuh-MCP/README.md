@@ -46,8 +46,8 @@ A high-performance, completely original, AI-driven SOC dashboard and MCP (Model 
 
 ### 2. Clone and Setup Environment
 ```bash
-git clone https://github.com/yourusername/view-wazuh-sentinel
-cd view-wazuh-sentinel
+git https://github.com/NiteshKS22/Cyber-Sec/tree/main/View-Wazuh-MCP
+cd View-Wazuh-MCP
 
 # Create and activate a virtual environment
 python -m venv .venv
@@ -66,7 +66,7 @@ cp .env.example .env
 Update these values:
 - `WAZUH_URL`: Your Wazuh Manager URL (e.g., `https://192.168.1.10:55000`)
 - `WAZUH_USER` & `WAZUH_PASS`: API credentials
-- `OLLAMA_MODEL`: `phi4-mini:latest`
+- `OLLAMA_MODEL`: `phi4-mini:latest` (Any Model)
 
 ### 4. Running the Server
 ```bash
